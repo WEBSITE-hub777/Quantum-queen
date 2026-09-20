@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Quantum Queen AI — Login</title>
+<style>
+:root{--p:#8b5cf6;--p2:#c084fc;--bg:#06050a;--card:rgba(18,15,28,.82);--line:rgba(255,255,255,.11)}
+*{box-sizing:border-box;margin:0;padding:0}html,body{min-height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:#fff}
+body{min-height:100dvh;display:grid;place-items:center;overflow:hidden;padding:20px;position:relative}
+body:before,body:after{content:"";position:fixed;width:360px;height:360px;border-radius:50%;filter:blur(90px);opacity:.25;pointer-events:none}
+body:before{background:#7c3aed;top:-120px;left:-100px}body:after{background:#c026d3;right:-120px;bottom:-130px}
+.grid{position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent)}
+.card{position:relative;width:min(440px,100%);padding:34px;border:1px solid var(--line);border-radius:30px;background:var(--card);backdrop-filter:blur(24px);box-shadow:0 30px 100px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.06)}
+.logo{width:76px;height:76px;border-radius:24px;margin:0 auto 20px;display:grid;place-items:center;background:linear-gradient(135deg,#7c3aed,#c084fc);box-shadow:0 15px 45px rgba(139,92,246,.35);font-size:31px;font-weight:950}
+h1{text-align:center;font-size:29px;letter-spacing:-.8px}.sub{text-align:center;color:#a9a1b5;font-size:14px;margin:8px 0 30px}
+label{display:block;color:#ddd7e7;font-size:13px;font-weight:700;margin:0 0 8px}input{width:100%;height:52px;padding:0 16px;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(5,4,9,.65);outline:none;color:#fff;font:inherit;margin-bottom:17px;transition:.2s}input::placeholder{color:#6f687b}input:focus{border-color:#a78bfa;box-shadow:0 0 0 4px rgba(139,92,246,.12),0 0 25px rgba(139,92,246,.08)}
+.error{height:21px;text-align:center;color:#fb7185;font-size:13px;margin:-4px 0 9px}button{width:100%;height:52px;border:0;border-radius:15px;color:#fff;font-weight:850;font-size:15px;background:linear-gradient(135deg,#7c3aed,#a855f7 55%,#c084fc);box-shadow:0 14px 32px rgba(124,58,237,.28);cursor:pointer;transition:.18s}button:hover{transform:translateY(-1px);filter:brightness(1.07)}button:active{transform:translateY(0)}.note{text-align:center;color:#6f687b;font-size:11px;margin-top:18px}
+@media(max-width:520px){.card{padding:27px 21px;border-radius:25px}.logo{width:68px;height:68px;border-radius:21px}h1{font-size:25px}}
+</style>
+</head>
+<body><div class="grid"></div><main class="card"><div class="logo">Q</div><h1>Quantum Queen AI</h1><p class="sub">Enter your details to continue</p><form id="loginForm" novalidate><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name"><label for="email">Email ID</label><input id="email" name="email" type="email" placeholder="Enter your email" autocomplete="email"><div class="error" id="error" role="alert"></div><button type="submit">Continue</button></form><p class="note">Your details are saved locally on this device.</p></main>
+<script>
+const form=document.getElementById("loginForm"),nameInput=document.getElementById("name"),emailInput=document.getElementById("email"),error=document.getElementById("error");
+form.addEventListener("submit",e=>{e.preventDefault();const name=nameInput.value.trim(),email=emailInput.value.trim();if(!name||!email){error.textContent="Please fill the box.";(!name?nameInput:emailInput).focus();return}if(!emailInput.checkValidity()){error.textContent="Please enter a valid email ID.";emailInput.focus();return}localStorage.setItem("quantum_queen_user",JSON.stringify({name,email}));location.href="quantum-queen.html"});
+[nameInput,emailInput].forEach(i=>i.addEventListener("input",()=>error.textContent=""));
+</script></body></html>
